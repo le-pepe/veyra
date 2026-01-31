@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import type {Script} from '@/types/script';
+import type {Script} from '@/lib/db/schema';
 
 interface ScriptDetailModalProps {
     script: Script;
@@ -16,15 +16,6 @@ interface ScriptDetailModalProps {
 export default function ScriptDetailModal({ script, open, onClose }: ScriptDetailModalProps) {
     const [currentScreenshot, setCurrentScreenshot] = useState(0);
 
-    const handleInstall = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        const link = document.createElement('a');
-        link.href = script.fileUrl;
-        link.download = `${script.id}.user.js`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
 
     const nextScreenshot = () => {
         if (script.screenshots) {
@@ -207,7 +198,6 @@ export default function ScriptDetailModal({ script, open, onClose }: ScriptDetai
                                                 <Badge className="bg-primary/10 text-primary hover:bg-primary/20">
                                                     v{entry.version}
                                                 </Badge>
-                                                <span className="text-sm text-muted-foreground">{entry.date}</span>
                                             </div>
                                             <ul className="space-y-2">
                                                 {entry.changes.map((change, changeIndex) => (
