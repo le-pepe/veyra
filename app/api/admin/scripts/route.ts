@@ -41,7 +41,6 @@ export async function PUT(request: NextRequest) {
             .set(data)
             .where(eq(scripts.id, id))
             .returning();
-            git
         if (updatedScript.length === 0) {
             return NextResponse.json({ error: 'Script not found' }, { status: 404 });
         }
