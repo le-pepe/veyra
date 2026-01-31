@@ -145,7 +145,7 @@ export default function AdminPage() {
                     <DialogTrigger asChild>
                         <Button onClick={openCreateDialog}>Add New Script</Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="max-w-4xl! max-h-[90vh] overflow-y-auto">
                         <DialogHeader>
                             <DialogTitle>{isEditing ? 'Edit Script' : 'Add New Script'}</DialogTitle>
                             <DialogDescription>
