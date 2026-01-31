@@ -62,7 +62,7 @@ export default function ScriptCard({ script }: ScriptCardProps) {
                             Details
                         </Button>
                         <Button asChild className="flex-1">
-                            <a href={`/api/scripts/${script.id}/script.user.js`} target="_blank" className={`flex items-center gap-2`} >
+                            <a href={`/api/scripts/${script.id}/script.user.js`} className={`flex items-center gap-2`} >
                                 <Download className="mr-2 h-4 w-4" />
                                 Install
                             </a>
