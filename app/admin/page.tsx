@@ -17,6 +17,7 @@ import { Script, NewScript } from '@/lib/db/schema';
 import { getScripts, deleteScript, createScript, updateScript } from '@/lib/actions/scripts';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import {loginAction} from "@/lib/actions/login";
 
 export default function AdminPage() {
     const [password, setPassword] = useState('');
@@ -43,15 +44,17 @@ export default function AdminPage() {
     });
 
     const fetchScripts = async () => {
+        if (!isAuthenticated) return;
         setIsLoading(true);
         const data = await getScripts();
         setScripts(data);
         setIsLoading(false);
     };
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsAuthenticated(true);
+        const login = await loginAction(password)
+        setIsAuthenticated(login);
         fetchScripts();
     };
 
